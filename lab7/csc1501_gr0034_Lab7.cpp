@@ -1,4 +1,4 @@
-//==========================================================
+﻿//==========================================================
 //
 // Title:      Fundamental Structures Lab 7
 // Course:     CSC 1501
@@ -30,16 +30,14 @@ public:
 	//Factors of a Number function
 	void factorsOfNumber(int num);
 
-	//function to turn string into array
-	void stringToArray(string input);
 
 	//Polynomial Evaluation function
-	void polyeval(int arr[], int evalNum);
+	void polyeval(int arr[], int arraySize, int evalNum);
 
 	//Congruence Function
 	void congruent(int a, int b, int m);
 private:
-
+	char arr[20];
 
 };
 
@@ -90,32 +88,42 @@ void Lab7::factorsOfNumber(int num)
 	cout << "]" << endl;
 }
 
-//Functioon to turn string into a arr[]
-void Lab7::stringToArray(string input)
-{
-	char arr[20];
-	
-	for (int i = 0; i <= input.length(); i++)
-	{
 
-	}
-	
-}
 //Polynomial Evaluation
 //input: arr[] = array of the numbers from equation,
+//       arraySize = for how many inputs
 //       evalNum = number to evaluat the equation by
-//output: th eresults from the evaluation
-void Lab7::polyeval(int arr[], int evalNum)
+//output: the results from the evaluation
+//TestCase: Arr[-4,0,13,6] , evalNum = 3 , −4∗3^0 + 0∗3^1 + 13∗3^2 + 6∗3^3= 275
+void Lab7::polyeval(int arr[], int arraySize, int evalNum)
 {
 
+	int sum = 0;
+	for (int i = 0; i < arraySize; i++)
+	{
+
+			sum += arr[i] * pow(evalNum, i);
+
+	}
+	cout << "The sum of the evaluation is: " << sum << endl;
 }
 
 //Congruence 
 //input: a, b, m
 //output: True or False
+//TestCase: a=b(% m) = True
 void Lab7::congruent(int a, int b, int m)
 {
-
+	if ((b % m) == (a % m))
+	{
+		cout << "a = " << a << ", b = " << b << ", m = " << m << endl;
+		cout << "True" << endl;
+	}
+	else
+	{
+		cout << "a = " << a << ", b = " << b << ", m = " << m << endl;
+		cout << "False" << endl;
+	}
 }
 
 
@@ -123,8 +131,10 @@ void Lab7::congruent(int a, int b, int m)
 int main()
 {
 	// Declared variables
-
-
+	//array for the poleval equation
+	int arr[4] = { -4, 0, 13, 6 };
+	int evalNum = 3;
+	int arraySize = (sizeof(arr)/4);
 	// application header
 	cout << "start of Application " << endl;
 	cout << "--------------------" << endl << endl;
@@ -134,6 +144,10 @@ int main()
 	l7.factorsOfNumber(64);
 	l7.factorsOfNumber(97);
 	l7.factorsOfNumber(187);
+	l7.polyeval(arr,arraySize, evalNum);
+	l7.congruent(0, 8, 2);
+	l7.congruent(2, 8, 2);
+
 
 
 	// application close
